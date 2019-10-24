@@ -1,13 +1,17 @@
 # flyway-k8-helm-migrations
-Helm generating configmaps for k8 init containers running flyway migrations pattern
 
-Requirements
 
-  Database url with user/pass in values.yaml for the config map.
+Helm generating configmaps for k8 init containers running flyway migrations pattern.
+
+Requirements:
+
+ Database url with user/pass in values.yaml for the config map.
   
-  Application that connects to your database after flyway init container runs.
+ Application that connects to your database after flyway init container runs.
+ 
+ 
 
-  Run 
+   Run: 
   
     cd helm
     
@@ -17,7 +21,7 @@ Requirements
     
     kubectl apply -f deploy/uptime/templates
 
- Cleanup
+  Cleanup:
     
     kubectl delete ns uptime
     
