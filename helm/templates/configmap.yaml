@@ -1,0 +1,13 @@
+kind: ConfigMap 
+apiVersion: v1 
+metadata:
+  name: uptime-app-cm
+  namespace: uptime-app
+  labels:
+    name: uptime-app-cm
+    app: 
+data:
+  FLYWAY_URL: {{ .Values.config.db.url }}
+  FLYWAY_USER: {{ .Values.config.db.username }}
+  FLYWAY_PASSWORD: {{ .Values.config.db.password }}
+  driver-class-name: {{ .Values.config.db.driver_class_name }}

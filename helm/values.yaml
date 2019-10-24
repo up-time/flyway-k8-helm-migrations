@@ -1,0 +1,13 @@
+replicaCount: 1
+
+image:
+  repository: YOUR_APP_IMAGE
+  tag: latest
+  pullPolicy: Always
+
+config:
+  db:
+    url: jdbc:YOUR_DB_URL
+    username: YOUR_DB_USERNAME
+    password: YOUR_DB_PASSWORD
+    driver_class_name: org.postgresql.Driver

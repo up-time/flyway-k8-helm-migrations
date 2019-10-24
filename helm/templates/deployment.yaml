@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uptime
+  namespace: uptime
+  labels:
+    name: uptime
+    app: uptime
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: uptime
+  template:
+    metadata:
+      name: uptime 
+      labels:
+        app: uptime
+        name: uptime
+    spec:
+      restartPolicy: Always
+      initContainers:
+      - name: init-uptime-flyway
+        image: flyway/flyway
+        args: ['migrate']
+        env:
+        - name: FLYWAY_LOCATIONS
+          value: 'filesystem:/flyway/migrations'
+        envFrom:
+          - configMapRef:
+              name: uptime-cm
+        volumeMounts:
+        - name: uptime-flyway-volume
+          mountPath: /flyway/migrations
+      volumes:
+        - name: uptime-flyway-volume
+          configMap:
+             name: uptime-flyway-cm
+
+      containers:
+      - name: uptime
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 5000
+            protocol: TCP
+        env:
+        envFrom:
+          - configMapRef:
+              name: uptime-cm
