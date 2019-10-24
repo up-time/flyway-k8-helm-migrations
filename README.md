@@ -4,9 +4,11 @@ Helm generating configmaps for k8 init containers running flyway migrations patt
 Requirements
 
   Database url with user/pass in values.yaml for the config map.
+  
   Application that connects to your database after flyway init container runs.
 
   Run 
+  
     cd helm
     
     kubectl create ns uptime
