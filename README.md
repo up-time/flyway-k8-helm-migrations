@@ -29,5 +29,5 @@ This chart uses a config map templating feature to convert migrations/*.sql file
     
     kubectl delete ns uptime
     
-    kubectl delete deploy/uptime/templates
+    kubectl delete -f deploy/uptime/templates
      
